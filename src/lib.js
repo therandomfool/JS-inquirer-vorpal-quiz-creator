@@ -9,13 +9,16 @@ export const chooseRandom = (array, number) => {
   if (defArr.length < 2){
     return defArr;
   }
-  if (number < 1 || number > defArr.length || number == undefined){
+  if (number < 1 || number > defArr.length || !number  ){
    numItems = Math.floor(Math.random() * (array.length-1)+ 1); 
+  } else {
+    numItems = number;
   }
 
-  for(let i = 1; i < numItems; i++){
+  for(let i = 1; i <= numItems; i++){
     newArray.push(defArr[Math.floor(Math.random() * (array.length)+ 1)])
   }
+  
   return newArray;
 }
 
