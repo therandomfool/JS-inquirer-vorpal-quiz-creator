@@ -1,32 +1,64 @@
 import fs from 'fs'
+import Choice from 'inquirer/lib/objects/choice'
+import Choices from 'inquirer/lib/objects/choices'
+import {
+  all
+} from 'underscore'
 
-export const chooseRandom = (array, number) => {
-  let numItems
-  let defArr = []
-  let newArray = []
-  defArr = array
+export const chooseRandom = (arr, numItems) => {
+  // let numItems
+  // let defArr = []
+  // let newArray = []
+  // defArr = array
 
-  if (defArr.length < 2) {
-    return defArr;
+  // if (defArr.length < 2) {
+  //   return defArr;
+  // }
+  // if (number < 1 || number > defArr.length || !number) {
+  //   numItems = Math.floor(Math.random() * (array.length) + 1);
+  // } else {
+  //   numItems = number;
+  // }
+
+  // for (let i = 1; i <= numItems; i++) {
+  //   newArray.push(defArr[Math.floor(Math.random() * (array.length) + 1)])
+  // }
+  // return newArray;
+
+  if (arr.length <= 1) {
+    return arr
   }
-  if (number < 1 || number > defArr.length || !number) {
-    numItems = Math.floor(Math.random() * (array.length - 1) + 1);
-  } else {
-    numItems = number;
+  if (numItems === undefined || numItems < 1 || numItems > arr.length) {
+    numItems = Math.floor(Math.random() * (arr.length + 1))
   }
-
-  for (let i = 1; i <= numItems; i++) {
-    newArray.push(defArr[Math.floor(Math.random() * (array.length) + 1)])
+  let random = []
+  let addedIndexes = []
+  for (let x = 0; x < numItems; x++) {
+    let index = Math.floor(Math.random() * arr.length)
+    while (addedIndexes.includes(index)) {
+      index = Math.floor(Math.random() * arr.length)
+    }
+    addedIndexes.push(index)
+    random.push(arr[index])
   }
-
-  return newArray;
+  return random;
 }
 
-export const createPrompt = ({numQuestions = 1, numChoices = 2} = {}) => {
-  const promptArray = []
+// export const serializeRandom = questions => {
+//   if (questions.length !== 0) {
 
-  // console.log(`nQuestions: --> ${numQuestions}`)
-  // console.log(`nChoices: --> ${numChoices}`)
+//     for (let i = 1; i <= question.length; i++) {
+//       random[i - 1].name = `question-${i}`
+//     }
+//   }
+//   return questions
+// }
+
+export const createPrompt = ({
+  numQuestions = 1,
+  numChoices = 2
+} = {}) => {
+  const promptArray = []
 
   for (let q = 0; q < numQuestions; q++) {
 
@@ -44,12 +76,43 @@ export const createPrompt = ({numQuestions = 1, numChoices = 2} = {}) => {
       })
     }
   }
-  // console.log(promptArray)
   return promptArray;
 }
 
-export const createQuestions = () => {
-  // TODO implement createQuestions
+
+
+export const createQuestions = (input = {}) => {
+  const questions = []
+  const choices = []
+  for (const [key, value] of Object.entries(input)) {
+    if (!key.includes('choice')) {
+      questions.push({
+        key,
+        value
+      })
+    } else {
+      choices.push({
+        key,
+        value
+      })
+    }
+  }
+  const createdQuestions = []
+  for (const question of questions) {
+    const questionChoices = []
+    for (const choice of choices) {
+      if ((choice.key).includes(question.key)) {
+        questionChoices.push(choice.value)
+      }
+    }
+    createdQuestions.push({
+      type: 'list',
+      name: question.key,
+      message: question.value,
+      choices: questionChoices
+    })
+  }
+  return createdQuestions
 }
 
 export const readFile = path =>

@@ -1,0 +1,20 @@
+[
+     {
+          "type": "list",
+          "name": "question-1",
+          "message": "sky color",
+          "choices": [
+               "blue",
+               "red"
+          ]
+     },
+     {
+          "type": "list",
+          "name": "question-2",
+          "message": "sea",
+          "choices": [
+               "red ",
+               "blue"
+          ]
+     }
+]

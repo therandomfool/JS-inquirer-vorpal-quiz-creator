@@ -1,0 +1,20 @@
+[
+     {
+          "type": "list",
+          "name": "question-1",
+          "message": "where",
+          "choices": [
+               "here",
+               "there"
+          ]
+     },
+     {
+          "type": "list",
+          "name": "question-2",
+          "message": "why",
+          "choices": [
+               "IDK",
+               "IDC"
+          ]
+     }
+]
