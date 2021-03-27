@@ -1,0 +1,29 @@
+[
+     {
+          "type": "list",
+          "name": "question-1",
+          "message": "hop on pop?",
+          "choices": [
+               "yes",
+               "no"
+          ]
+     },
+     {
+          "type": "list",
+          "name": "question-2",
+          "message": "sam I am?",
+          "choices": [
+               "yes",
+               "no"
+          ]
+     },
+     {
+          "type": "list",
+          "name": "question-3",
+          "message": "red fish blue fish one fish ____fish?",
+          "choices": [
+               "one",
+               "two"
+          ]
+     }
+]

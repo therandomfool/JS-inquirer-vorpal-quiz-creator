@@ -6,8 +6,7 @@ import {
   writeFile,
   chooseRandom,
   createPrompt,
-  createQuestions,
-  serializeRandom
+  createQuestions
 } from './lib'
 import { json } from 'jsverify'
 
@@ -124,8 +123,8 @@ cli
       ' Then, saves the users answers to the given outputFile'
   )
   .action(function ({options, outputFile, fileNames}) {
-    return (takeRandomQuiz(fileNames, outputFile, 3))
-  })
+    return (takeRandomQuiz(fileNames, outputFile, 2)
+  )})
 
 
 cli.delimiter(cli.chalk['yellow']('quizler>')).show()

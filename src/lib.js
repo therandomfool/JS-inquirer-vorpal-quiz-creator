@@ -5,54 +5,44 @@ import {
   all
 } from 'underscore'
 
-export const chooseRandom = (arr, numItems) => {
-  // let numItems
-  // let defArr = []
-  // let newArray = []
-  // defArr = array
+export const chooseRandom = (array, number) => {
+  let numItems
+  let defArr = []
+  let newArray = []
+  defArr = array
 
-  // if (defArr.length < 2) {
-  //   return defArr;
-  // }
-  // if (number < 1 || number > defArr.length || !number) {
-  //   numItems = Math.floor(Math.random() * (array.length) + 1);
-  // } else {
-  //   numItems = number;
-  // }
+  if (defArr.length < 2) {
+    return defArr;
+  }
+  if (number < 1 || number > defArr.length || !number) {
+    numItems = Math.floor(Math.random() * (array.length) + 1);
+  } else {
+    numItems = number;
+  }
 
-  // for (let i = 1; i <= numItems; i++) {
-  //   newArray.push(defArr[Math.floor(Math.random() * (array.length) + 1)])
-  // }
-  // return newArray;
+  for (let i = 1; i <= numItems; i++) {
+    newArray.push(defArr[Math.floor(Math.random() * (array.length) + 1)])
+  }
+  return newArray;
 
-  if (arr.length <= 1) {
-    return arr
-  }
-  if (numItems === undefined || numItems < 1 || numItems > arr.length) {
-    numItems = Math.floor(Math.random() * (arr.length + 1))
-  }
-  let random = []
-  let addedIndexes = []
-  for (let x = 0; x < numItems; x++) {
-    let index = Math.floor(Math.random() * arr.length)
-    while (addedIndexes.includes(index)) {
-      index = Math.floor(Math.random() * arr.length)
-    }
-    addedIndexes.push(index)
-    random.push(arr[index])
-  }
-  return random;
+  // if (arr.length <= 1) {
+  //   return arr
+  // }
+  // if (numItems === undefined || numItems < 1 || numItems > arr.length) {
+  //   numItems = Math.floor(Math.random() * (arr.length + 1))
+  // }
+  // let random = []
+  // let addedIndexes = []
+  // for (let x = 0; x < numItems; x++) {
+  //   let index = Math.floor(Math.random() * arr.length)
+  //   while (addedIndexes.includes(index)) {
+  //     index = Math.floor(Math.random() * arr.length)
+  //   }
+  //   addedIndexes.push(index)
+  //   random.push(arr[index])
+  // }
+  // return random;
 }
-
-// export const serializeRandom = questions => {
-//   if (questions.length !== 0) {
-
-//     for (let i = 1; i <= question.length; i++) {
-//       random[i - 1].name = `question-${i}`
-//     }
-//   }
-//   return questions
-// }
 
 export const createPrompt = ({
   numQuestions = 1,
